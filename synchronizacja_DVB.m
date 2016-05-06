@@ -8,7 +8,8 @@ breakSignal = [0 0 0 0 0];
 #Tworzenie klucza o odpowiedniej dlugosci
 global keyLength = 10;
 
-synchronizationKeyRand = round(rand(1, keyLength));
+#synchronizationKeyRand = round(rand(1, keyLength));
+synchronizationKeyRand = [3 3 3 3 3 3 3 3 3 3];
 
 #Wysylanie sygnalu zescramblowanego + klucz
 function [out] = send_dvb(dvb, synchKey)
@@ -35,23 +36,23 @@ function [out] = get_dvb(key, in, synchKey, breakSignal)
     endif
   endfor
   
-#petla która zajmie się przerywaniem i descramblowaniem, jeżeli natrafi na ciag znaków jaki jest z góry ustalony czyli 5 zer,
-#to petla zostaje przerwana i uzyskujemy uszkodzony sygnal
+  #petla która zajmie się przerywaniem i descramblowaniem, jeżeli natrafi na ciag znaków jaki jest z góry ustalony czyli 5 zer,
+  #to petla zostaje przerwana i uzyskujemy uszkodzony sygnal
 
-brCount = 0;
+  brCount = 0;
   for i = 1:length(newSignal)
-  if i < length(newSignal) - length(breakSignal)
+    if i < length(newSignal) - length(breakSignal)
     b = newSignal(i:i+length(breakSignal)-1);
     
   #zrywanie sygnalu 
-  if (b == breakSignal)
+      if (b == breakSignal)
       newSignal(i) = [];
       brCount++;;
   #descramblowanie sygnalu po kluczu
-   endif
-   endif
+      endif
+    endif
       out = DVB(key, newSignal);
-    endfor
+  endfor
     brCount
    z = zeros(1,brCount);
    out = [out z];
