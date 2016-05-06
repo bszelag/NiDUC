@@ -22,17 +22,17 @@
 ## Author: Szymon Wojciechowski <szymon@szymon-linux>
 ## Created: 2016-05-05
 
-function [out] = nadajnik(signal_in,WORD, N)
+function [out] = nadajnik_DVB(signal_in, KEY, WORD, N)
 
   out = [];
   i = 1;
   
   while ( (i * N) < length(signal_in))
     
-    sp = (i-1) * N + 1
-    ep = N*i
+    sp = (i-1) * N + 1;
+    ep = N*i;
 
-    out = [out, signal_in(sp:ep), WORD];
+    out = [out, DVB(KEY, signal_in(sp:ep)), WORD];
     i++;
   endwhile
   
