@@ -27,7 +27,7 @@ function [out] = nadajnik_DVB(signal_in, KEY, WORD, N)
   out = [];
   i = 1;
   
-  while ( (i * N) < length(signal_in))
+  while ( (i * N) <= length(signal_in))
     
     sp = (i-1) * N + 1;
     ep = N*i;
@@ -37,8 +37,7 @@ function [out] = nadajnik_DVB(signal_in, KEY, WORD, N)
   endwhile
   
   out = [out, signal_in((i-1) * N + 1 : end)];
-  out(end+1:N*i) = 0;
-  out = [out, WORD]; 
+  out(end+1:N*i) = 0; 
 
 
 endfunction
