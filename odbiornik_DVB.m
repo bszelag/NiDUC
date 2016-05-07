@@ -1,25 +1,28 @@
 function [out] = odbiornik_DVB(signal_in, KEY, WORD)
 
   out = [];
+
+  i = 0;
   temp = [];
-  i = 1;
 
-  while  i + length(WORD)-1 <= length(signal_in)
+  while length(WORD) + i <= length(signal_in)
 
-    comp = signal_in(i: i + length(WORD) - 1);
-    
+    comp = signal_in(1 + i:length(WORD) + i);
+
     if isequal(comp,WORD)
-      DVB(KEY,temp)
-      out = [out, DVB(KEY,temp)];
+
+      out = [out,DVB(KEY,temp)];
       temp = [];
       i += length(WORD);
+      
+      else
+      
+      temp = [temp,signal_in(1 + i)];
+      i += 1;
 
-    else
-
-    temp = [temp, signal_in(i++)];
-
-  endif
+    endif
     
   endwhile
+  out = [out, DVB(KEY,[temp, signal_in(i+1:end)])];
 
 endfunction
