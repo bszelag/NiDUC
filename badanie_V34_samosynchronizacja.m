@@ -3,7 +3,7 @@ z = zeros(1,1000);         % Sygnał samych zer
 o = ones(1,1000);           % Sygnał samych jedynek
 
 KEY = round(rand(1,23)); % Klucz losowy
-% KEY = [ 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 ] % Klucz naprzemienny
+%KEY = [ 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 ] % Klucz naprzemienny
 % TODO: Klucz z literatury.
 
 S = v34(KEY,s);
@@ -42,6 +42,9 @@ title('Scramblowany Sygnal Jedynek')
 
 
 figure('Name','Test Descramblingu')
+
+#robię inwersję 5 bitów (psuję sygnał)
+S(30:35)  = !S(30:35);
 
 S = v34_d(KEY,S);
 
