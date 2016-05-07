@@ -13,6 +13,19 @@ function [out] = odbiornik_DVB(signal_in, KEY, WORD)
       out = [out, DVB(KEY,temp)];
       temp = [];
       i += length(WORD);
+<<<<<<< HEAD
+      
+      elseif isequal(comp,[0 0 0 0 0])
+       
+        temp = [temp, [1 1 1 1 1]];
+        i += 5;
+
+      else
+      
+      temp = [temp,signal_in(1 + i)];
+      i += 1;
+=======
+>>>>>>> parent of 2593f24... Odbiornik DVB - WORKING
 
     else
 
