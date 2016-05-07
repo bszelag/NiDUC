@@ -15,6 +15,11 @@ function [out] = odbiornik_DVB(signal_in, KEY, WORD)
       temp = [];
       i += length(WORD);
       
+      elseif isequal(comp,[0 0 0 0 0])
+       
+        temp = [temp, [1 1 1 1 1]];
+        i += 5;
+
       else
       
       temp = [temp,signal_in(1 + i)];
