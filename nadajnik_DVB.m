@@ -19,7 +19,6 @@ function [out] = nadajnik_DVB(signal_in, KEY, WORD, N)
      comp = temp(j:j+4);
      
      if isequal(comp,[0 0 0 0 0])
-     #S2 = [S1(1:6),shift(S1(7:end),1)]
      temp = [temp(1:j),shift(temp(j+1:end),1)];
       
      endif
